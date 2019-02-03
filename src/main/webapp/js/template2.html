@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>iTravel管理系统</title>
+
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+		window.onload=function(){
+			 var winHeight=0;  
+             if (window.innerHeight)  
+                 winHeight = window.innerHeight;  
+             else if ((document.body) && (document.body.clientHeight))  
+                 winHeight = document.body.clientHeight;  
+    //通过深入Document内部对body进行检测，获取浏览器窗口高度  
+             if (document.documentElement && document.documentElement.clientHeight)  
+                 winHeight = document.documentElement.clientHeight;  
+    //DIV高度为浏览器窗口的高度  
+             document.getElementById("father").style.height= winHeight +"px"; 
+          //document.getElementById("son1").style.lineHeight=winHeight*0.15+"px";
+		}
+	</script>
+	<style type="text/css">
+	/*左侧菜单*/
+	.sidebar-menu {
+		
+	}
+	/*一级菜单*/
+	.divMenu{
+		border:  solid 1px;
+		background-color: #1B6D85;
+	}
+	.menu-first{
+		height: 45px;
+		line-height: 45px;
+		/*border-top: 1px solid #efefef;
+		border-bottom: 1px solid #e1e1e1;*/
+		padding: 0;
+		font-size: 14px;
+		font-weight: normal;
+		text-align: left;
+		color: #0F0F0F;
+		
+	}
+	/*一级菜单鼠标划过状态*/
+	
+	.menu-first:hover {
+		text-decoration: none;
+		/*border-top: 1px solid #b7b7b7 ;
+		border-bottom: 1px solid #acacac;*/
+		color: #BCE8F1;
+
+	}
+	.menu-first:focus{
+		text-decoration: none;
+		color: #BCE8F1;
+	}
+	/*二级菜单*/
+	
+	.menu-second li a {
+		background-color: #f6f6f6;
+		height: 31px;
+		line-height: 31px;
+		border-top: 1px solid #efefef;
+		border-bottom: 1px solid #efefef;
+		font-size: 12px;
+		text-align: center;
+		
+	}
+	/*二级菜单鼠标划过样式*/
+	
+	.menu-second li a:hover {
+		text-decoration: none;
+		background-color: #66c3ec;
+		border-top: 1px solid #83ceed;
+		border-bottom: 1px solid #83ceed;
+		border-right: 3px solid #f8881c;
+		border-left: 3px solid #66c3ec;
+	}
+	/*二级菜单选中状态*/
+	
+	.menu-second-selected {
+	
+		height: 31px;
+		line-height: 31px;
+		border-top: 1px solid #83ceed;
+		border-bottom: 1px solid #83ceed;
+		border-right: 3px solid #f8881c;
+		border-left: 3px solid #66c3ec;
+		text-align: center;
+	}
+	/*覆盖bootstrap的样式*/
+	
+	.nav-list,
+	.nav-list li a {
+		padding: 0px;
+		margin: 0px;
+	}
+</style>
+</head>
+	<body>
+	<div id="father">
+		<div style="position: fixed;right: 50px;bottom: 100px;height: 30px;width: 30px;line-height: 30px;
+			border: gray 1px solid;"align="center"><span class="glyphicon glyphicon-arrow-up"></span>
+		</div>
+		<div  style="height: 8%;background-color: #222 ;"><!--background: url(img/background1.jpg);background-size: 100% 100%;--> 
+			<div style="height: 100%; width: 7%;float: left;"><img src="img/1.jpg"width="100%"height="100%"></div>
+			<!--<div style="height: 100%;width:3%;float: left;"></div>-->
+			<div style="height: 100%;width:30%;float: left;" align="left">
+			    <label style="height: 100%;width: 100%;text-align: left;">&nbsp;&nbsp;
+			    	<font size="7" color="#C9302C" face="bradley hand itc">iTravel</font>&nbsp;&nbsp;
+			    	<font size="4" color="#00a0df" face="monaco" style="font-weight: 300;">Administration system </font>
+			    </label>
+			</div>
+			<div style="height: 100%; width: 50%; float: right;">
+				<nav style="height: inherit;" class="navbar navbar-inverse">
+					<div style="height: inherit;"  class="container-fluid">
+						<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" 
+							data-toggle="collapse" data-target="#myCollapse1">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+	
+					    </div>
+					    
+					    <div class="collapse navbar-collapse" id="myCollapse1">
+					    	<ul  class="nav navbar-nav">
+					    		<li class="active"><a href="#">用户管理</a></span></li>
+					    		<li class="dropdown">
+					    			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					    				动态管理<span class="caret"></span>
+					    			</a>
+					    			<ul class="dropdown-menu" role="menu">
+					    				<li><a href="#">动态审核</a></li>
+					    				<li><a href="#">标签管理</a></li>
+					    				<li><a href="#">敏感词管理</a></li>
+					    			</ul>
+					    		</li>
+					    		<li class="dropdown">
+					    			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					    				话题管理<span class="caret"></span>
+					    			</a>
+					    			<ul class="dropdown-menu" role="menu">
+					    				<li><a href="#">话题查找</a></li>
+					    				<li><a href="#">添加话题</a></li>					    				
+					    			</ul>
+					    		</li>
+					    		<li><a href="#">轮播图管理</a></li>
+					    	</ul>
+					    	
+					    	<form class="navbar-form navbar-right" role="search">
+					    		<div class="form-group">
+					    			<input type="text" class="form-control" placeholder="Search" />
+					    		</div>
+					    		<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+					    	</form>
+					    </div>
+					</div>					
+				</nav>
+			</div>	
+		</div>
+		
+		
+	    <!--侧栏-->
+		<div style="height:inherit;width: 10%;float: left;background-color: #122B40;">
+			<div class="sidebar-menu" style="height: 100%;">
+				<div class="divMenu" align="center">
+	            	<a href="#" class="nav-header menu-first collapsed" data-toggle="collapse">
+	            		<span class="glyphicon glyphicon-home"></span> HOME
+	            	</a>
+	            </div>
+				<div class="divMenu" align="center">
+	            	<a href="#" class="nav-header menu-first collapsed" data-toggle="collapse">
+	            		<span class="glyphicon glyphicon-user"></span> 用户管理
+	            	</a>
+	            </div>
+				<div class="divMenu" align="center">
+					<a id="tidings" href="#newsMenu" class="nav nav-header menu-first collapsed" data-toggle="collapse"style="width: 100%;">
+		                <span class="glyphicon glyphicon-globe"></span> 动态管理 <span class="caret"></span>
+	                </a>
+				</div>
+	
+	            <ul id="newsMenu" class="nav nav-list collapse menu-second">
+	            	<li><a href="#"><span class="glyphicon glyphicon-glass"></span> 动态审核</a></li>
+	            	<li><a href="#"><span class="glyphicon glyphicon-tags"></span> 标签管理</a></li>
+	            	<li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span> 敏感词管理</a></li>	       
+	            </ul>
+	            
+	            <div class="divMenu" align="center">
+	            	<a id="topic" href="#topicMenu" class="nav nav-header menu-first collapsed" data-toggle="collapse">
+	            		<span class="glyphicon glyphicon-comment"></span> 话题管理 <span class="caret"></span>
+	            	</a>
+	            </div>
+	            
+	            <ul id="topicMenu" class="nav nav-list collapse menu-second">
+	            	<li><a href="#"><span class="glyphicon glyphicon-th-list"></span> 话题查找</a></li>
+	            	<li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span> 添加话题</a></li>	        	       
+	            </ul>
+	            
+	            <div class="divMenu" align="center">
+	            	<a href="#" class="nav-header menu-first collapsed" data-toggle="collapse">
+	            		<span class="glyphicon glyphicon-th-large"></span> 轮播图管理
+	            	</a>
+	            </div>
+	            <div class="divMenu" align="center">
+	            	<a href="#" class="nav-header menu-first collapsed" data-toggle="collapse">
+	            		<span class="glyphicon glyphicon-book"></span> 关于
+	            	</a>
+	            </div>
+	            <div class="divMenu" align="center">
+	            	<a href="#" class="nav-header menu-first collapsed" data-toggle="collapse">
+	            		<span class="glyphicon glyphicon-list-alt"></span> 帮助
+	            	</a>
+	            </div>
+	            <div class="divMenu" align="center">
+	            	<a href="#" class="nav-header menu-first collapsed" data-toggle="collapse">
+	            		<span class="glyphicon glyphicon-edit"></span> 退出登录
+	            	</a>
+	            </div>
+			</div>
+			
+		</div>
+		
+		<!--主体-->
+		<div style="width: 90%;float: left;">
+			
+			<!--路径导航-->
+			<div style="height: auto;position: relative;top:0px">
+				<ol class="breadcrumb">
+					<li> <span class="glyphicon glyphicon-home"style="font-size:15px;color: #262626;"></span> Home</li>
+					<li class="active"><span class="glyphicon glyphicon-user"style="font-size:15px;color: #262626;"></span> 用户管理</li>
+				</ol>
+			</div>
+			
+			<!--页面主题-->
+			<div class="container" style="height: auto;">
+				<h2 class="page-header" style="opacity: 0.7;">User Management</h2>
+			</div>
+		</div>
+		
+		
+		
+	</div>
+</body>
+</html>

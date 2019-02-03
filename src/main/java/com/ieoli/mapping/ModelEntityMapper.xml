@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ieoli.dao.ModelEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.ieoli.entity.ModelEntity" >
+    <id column="ModelID" property="modelid" jdbcType="INTEGER" />
+    <result column="ModelName" property="modelname" jdbcType="VARCHAR" />
+    <result column="Section" property="section" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ModelID, ModelName, Section
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ieoli.entity.ModelEntityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from models
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from models
+    where ModelID = #{modelid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from models
+    where ModelID = #{modelid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ieoli.entity.ModelEntityExample" >
+    delete from models
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ieoli.entity.ModelEntity" >
+    insert into models (ModelID, ModelName, Section
+      )
+    values (#{modelid,jdbcType=INTEGER}, #{modelname,jdbcType=VARCHAR}, #{section,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ieoli.entity.ModelEntity" >
+    insert into models
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="modelid != null" >
+        ModelID,
+      </if>
+      <if test="modelname != null" >
+        ModelName,
+      </if>
+      <if test="section != null" >
+        Section,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="modelid != null" >
+        #{modelid,jdbcType=INTEGER},
+      </if>
+      <if test="modelname != null" >
+        #{modelname,jdbcType=VARCHAR},
+      </if>
+      <if test="section != null" >
+        #{section,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ieoli.entity.ModelEntityExample" resultType="java.lang.Integer" >
+    select count(*) from models
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update models
+    <set >
+      <if test="record.modelid != null" >
+        ModelID = #{record.modelid,jdbcType=INTEGER},
+      </if>
+      <if test="record.modelname != null" >
+        ModelName = #{record.modelname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.section != null" >
+        Section = #{record.section,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update models
+    set ModelID = #{record.modelid,jdbcType=INTEGER},
+      ModelName = #{record.modelname,jdbcType=VARCHAR},
+      Section = #{record.section,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ieoli.entity.ModelEntity" >
+    update models
+    <set >
+      <if test="modelname != null" >
+        ModelName = #{modelname,jdbcType=VARCHAR},
+      </if>
+      <if test="section != null" >
+        Section = #{section,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ModelID = #{modelid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ieoli.entity.ModelEntity" >
+    update models
+    set ModelName = #{modelname,jdbcType=VARCHAR},
+      Section = #{section,jdbcType=INTEGER}
+    where ModelID = #{modelid,jdbcType=INTEGER}
+  </update>
+</mapper>

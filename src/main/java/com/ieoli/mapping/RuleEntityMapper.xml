@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ieoli.dao.RuleEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.ieoli.entity.RuleEntity" >
+    <id column="RuleID" property="ruleid" jdbcType="INTEGER" />
+    <result column="UserID" property="userid" jdbcType="INTEGER" />
+    <result column="modelID" property="modelid" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="regex" property="regex" jdbcType="VARCHAR" />
+    <result column="rate" property="rate" jdbcType="DOUBLE" />
+    <result column="LastUpdateTime" property="lastupdatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    RuleID, UserID, modelID, description, regex, rate, LastUpdateTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ieoli.entity.RuleEntityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from rules
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rules
+    where RuleID = #{ruleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rules
+    where RuleID = #{ruleid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ieoli.entity.RuleEntityExample" >
+    delete from rules
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ieoli.entity.RuleEntity" >
+    insert into rules (RuleID, UserID, modelID, 
+      description, regex, rate, 
+      LastUpdateTime)
+    values (#{ruleid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{modelid,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{regex,jdbcType=VARCHAR}, #{rate,jdbcType=DOUBLE}, 
+      #{lastupdatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ieoli.entity.RuleEntity" >
+    insert into rules
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ruleid != null" >
+        RuleID,
+      </if>
+      <if test="userid != null" >
+        UserID,
+      </if>
+      <if test="modelid != null" >
+        modelID,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="regex != null" >
+        regex,
+      </if>
+      <if test="rate != null" >
+        rate,
+      </if>
+      <if test="lastupdatetime != null" >
+        LastUpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ruleid != null" >
+        #{ruleid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="modelid != null" >
+        #{modelid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="regex != null" >
+        #{regex,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=DOUBLE},
+      </if>
+      <if test="lastupdatetime != null" >
+        #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ieoli.entity.RuleEntityExample" resultType="java.lang.Integer" >
+    select count(*) from rules
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update rules
+    <set >
+      <if test="record.ruleid != null" >
+        RuleID = #{record.ruleid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        UserID = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.modelid != null" >
+        modelID = #{record.modelid,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regex != null" >
+        regex = #{record.regex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rate != null" >
+        rate = #{record.rate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.lastupdatetime != null" >
+        LastUpdateTime = #{record.lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update rules
+    set RuleID = #{record.ruleid,jdbcType=INTEGER},
+      UserID = #{record.userid,jdbcType=INTEGER},
+      modelID = #{record.modelid,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR},
+      regex = #{record.regex,jdbcType=VARCHAR},
+      rate = #{record.rate,jdbcType=DOUBLE},
+      LastUpdateTime = #{record.lastupdatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ieoli.entity.RuleEntity" >
+    update rules
+    <set >
+      <if test="userid != null" >
+        UserID = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="modelid != null" >
+        modelID = #{modelid,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="regex != null" >
+        regex = #{regex,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        rate = #{rate,jdbcType=DOUBLE},
+      </if>
+      <if test="lastupdatetime != null" >
+        LastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RuleID = #{ruleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ieoli.entity.RuleEntity" >
+    update rules
+    set UserID = #{userid,jdbcType=INTEGER},
+      modelID = #{modelid,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      regex = #{regex,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=DOUBLE},
+      LastUpdateTime = #{lastupdatetime,jdbcType=TIMESTAMP}
+    where RuleID = #{ruleid,jdbcType=INTEGER}
+  </update>
+</mapper>
