@@ -1,0 +1,153 @@
+body{
+    background: url("../img/1.jpg");
+    width:100%;
+    animation-name:myfirst;
+    animation-duration:12s;
+    /*变换时间*/
+    animation-delay:0s;
+    /*动画开始时间*/
+    animation-iteration-count:infinite;
+    /*下一周期循环播放*/
+    animation-play-state:running;
+    /*动画开始运行*/
+}
+@keyframes myfirst
+{
+    0%   {background:url("../img/1.jpg") no-repeat fixed;
+    background-size: cover;}
+    34%  {background:url("../img/2.jpg")no-repeat fixed;
+    background-size: cover;}
+    /*67%  {background:url("../img/3.jpg")no-repeat fixed;}*/
+    100% {background:url("../img/1.jpg")no-repeat fixed;
+    background-size:contain;}
+}
+html,body{
+	width:100%;
+	height:100%;
+	overflow-y: hidden;
+}
+.background{
+	position:absolute;
+	left:0px;
+	top:0px;
+	z-index: -1;
+	width:100%;
+	height:100%;
+	background-color:rgba(30,30,30,0.8);	
+}
+.container{
+	margin:100px;
+}
+.fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;}
+input[type="text"],input[type="password"]{padding-left:26px;}
+input[type="text"]:focus{
+	outline: 0;
+	background: #fff;
+    border: 3px solid #EFB336;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;}
+    
+    input[type="password"]:focus{
+	outline: 0;
+	background: #fff;
+    border: 3px solid #EFB336;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;}
+    
+.total-title{ font-size:50px;color:#FFFFFF; }
+
+.description {
+	margin: 20px 0 10px 0;
+}
+
+.description p { color:#FFFFFF;opacity: 0.8; }
+
+.form-box{
+	float:right;
+	width:350px;
+	height:345px;
+	margin:20px 80px 0px 30px;
+	background:url(../img/bg.png);
+	background-color: rgba(250,250,250,0.8);
+}
+
+.form-box.signup{
+	float:right;
+	width:350px;
+	height:440px;
+	margin:20px 80px 0px 30px;
+	background:url(../img/bg.png);
+	background-color: rgba(250,250,250,0.8);
+}
+
+.form-top {
+	overflow: hidden;
+	padding: 20px 25px 0px 25px;
+	text-align: left;
+}
+.form-title{
+	font-family:"PingHei";	
+	font-size: 30px;
+    font-weight: 500;
+    color: #575757;
+    line-height: 30px;
+}
+
+.form-horizontal {
+	width:100%;
+	padding: 0px 25px 30px 25px;
+	text-align: left;
+}
+.form-group.input{
+	width:90%;
+	margin-left:15px;
+	margin-right: 35px;
+}
+
+
+button[type="button"]{
+	background: transparent;
+	border:hidden;
+	color:#575757;
+	font-weight: 600;
+}
+.btn-forget{
+	float:left;
+	margin-left: 30px;
+}
+.btn-login{
+	float:right;
+	margin-right: 30px;;
+}
+button[type="submit"]{
+	width:243px;
+	background-color: #EFB336;
+	border:hidden;
+}
+
+.form-group.input.checkword{
+	margin-top:20px;
+	float:left
+}
+.form-group.input.left{	
+	float:left;
+	margin:0px;
+	width:143px;
+	position: relative;
+}
+.form-control required{
+	height: 20px;width: 140px;padding: 10px 5px;position: absolute;top: 0;
+}
+.form-group.input.right{
+	float:left;
+	width:100px;
+	margin:0px;
+}
+
+#radios{
+	margin-left:5px;
+}
+label{
+	color:#575757;
+}
+
+
+

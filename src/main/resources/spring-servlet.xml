@@ -76,8 +76,7 @@ class ="org.springframework.web.servlet.mvc.ParameterizableViewController	">
 	<property name="viewName" value="/WEB-INF/jsp/index.jsp"/>
 	
 	</bean>
-	
-	
+
 
 
 
